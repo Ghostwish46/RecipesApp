@@ -11,7 +11,7 @@ class Recipe(
     val uuid: String,
     val name: String,
 ) {
-    var lastUpdated: Int = 0
+    var lastUpdated: Long = 0
     var description: String = ""
     var instructions: String = ""
     var difficulty: Int = 0
