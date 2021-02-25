@@ -1,4 +1,4 @@
-package dev.ghost.recipesapp.presentation.recipe
+package dev.ghost.recipesapp
 
 import android.app.Application
 import dev.ghost.recipesapp.di.AppComponent

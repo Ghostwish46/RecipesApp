@@ -8,5 +8,5 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("recipes")
-    fun getRandomAdviceAsync(): Deferred<Response<Recipe>>
+    fun getRecipesAsync(): Deferred<List<Recipe>>
 }

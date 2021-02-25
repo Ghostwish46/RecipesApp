@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = [AppModule::class, DataBaseModule::class, NetworkModule::class])
+@Component(modules = [AppModule::class, DataBaseModule::class, NetworkModule::class, StorageModule::class])
 @Singleton
 interface AppComponent {
     // Application
@@ -12,7 +12,7 @@ interface AppComponent {
 
     // Activities
 
-    //    // Fragments
+    // Fragments
 
     // ViewModels
 }

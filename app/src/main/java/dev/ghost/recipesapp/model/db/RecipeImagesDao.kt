@@ -8,7 +8,7 @@ import dev.ghost.recipesapp.model.entities.RecipeImage
 @Dao
 interface RecipeImagesDao {
     @Query("SELECT * FROM recipeImages")
-    fun getClient(): LiveData<RecipeImage>
+    fun getData(): LiveData<RecipeImage>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(recipeImage: RecipeImage)

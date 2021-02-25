@@ -9,7 +9,7 @@ import dev.ghost.recipesapp.model.entities.RecipeSimilar
 @Dao
 interface RecipeSimilarDao {
     @Query("SELECT * FROM recipeSimilar")
-    fun getClient(): LiveData<RecipeSimilar>
+    fun getData(): LiveData<RecipeSimilar>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(recipeSimilar: RecipeSimilar)
