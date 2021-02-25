@@ -8,7 +8,7 @@ import java.util.*
 class RecipeImage(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val recipeUUID: UUID,
+    val recipeUUID: String,
     val path: String
 ) {
 }

@@ -8,7 +8,7 @@ import java.util.*
 class RecipeSimilar(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
-    val originalUUID: UUID,
-    val similar: UUID
+    val originalUUID: String,
+    val similar: String
 ) {
 }
