@@ -1,13 +1,12 @@
 package dev.ghost.recipesapp.model.entities
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity(tableName = "recipeImages")
+@Entity(tableName = "recipeImages", primaryKeys = ["recipeUUID", "path"])
 class RecipeImage(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
     val recipeUUID: String,
     val path: String
 ) {

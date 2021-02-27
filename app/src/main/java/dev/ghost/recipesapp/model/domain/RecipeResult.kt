@@ -10,6 +10,7 @@ data class RecipeResult(
     @SerializedName("lastUpdated") val lastUpdated: Long,
     @SerializedName("description") val description: String?,
     @SerializedName("instructions") val instructions: String,
-    @SerializedName("difficulty") val difficulty: Int
+    @SerializedName("difficulty") val difficulty: Int,
+    @SerializedName("similar") val similar: List<SimilarResult>?,
 ) {
 }

@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">RecipesApp</string>
 
+    <string name="header_similar_recipes">Похожие рецепты</string>
+
+    <string name="hint_difficulty">Сложность: </string>
+    <string name="hint_instructions">Инструкции по приготовлению: </string>
+
+
     <string name="text_error">An error occurred: </string>
 </resources>

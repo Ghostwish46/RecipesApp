@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.ghost.recipesapp">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -11,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecipesApp">
+        <activity android:name=".presentation.recipe_details.RecipeDetailsActivity"></activity>
         <activity android:name=".presentation.recipe.RecipesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,10 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity(tableName = "recipeSimilar")
+@Entity(tableName = "recipeSimilar", primaryKeys = ["originalUUID", "similar"])
 class RecipeSimilar(
-    @PrimaryKey(autoGenerate = true)
-    val id:Int,
     val originalUUID: String,
     val similar: String
 ) {

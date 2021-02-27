@@ -1,4 +1,4 @@
-package dev.ghost.recipesapp.presentation.recipe
+package dev.ghost.recipesapp.presentation.recipe_details
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,21 +6,23 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ItemRecipeBinding
+import dev.ghost.recipesapp.databinding.ItemSimilarRecipeBinding
 import dev.ghost.recipesapp.model.entities.RecipeWithImages
+import dev.ghost.recipesapp.presentation.recipe.RecipesDiffCallback
 
-class RecipesAdapter(
+class SimilarRecipesAdapter(
     private val onCardClickListener: (RecipeWithImages) -> Unit
-) : RecyclerView.Adapter<RecipeViewHolder>() {
+) : RecyclerView.Adapter<SimilarRecipeViewHolder>() {
 
     private val differ = AsyncListDiffer(this, RecipesDiffCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimilarRecipeViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = ItemRecipeBinding.inflate(layoutInflater, parent, false)
-        return RecipeViewHolder(view)
+        val view = ItemSimilarRecipeBinding.inflate(layoutInflater, parent, false)
+        return SimilarRecipeViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SimilarRecipeViewHolder, position: Int) {
         val currentRecipe = differ.currentList[position]
         holder.bind(currentRecipe, onCardClickListener)
     }
