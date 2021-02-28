@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">RecipesApp</string>
 
-    <string name="title_activity_recipe_images">RecipeImagesActivity</string>
+    <string name="title_activity_recipe_images">Recipe images</string>
+    <string name="title_activity_recipes">Recipes App</string>
+    <string name="title_activity_recipe_details">Recipe details</string>
 
     <string name="header_similar_recipes">Similar recipes:</string>
 
