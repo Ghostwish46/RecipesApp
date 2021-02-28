@@ -22,7 +22,7 @@ class RecipesRepository(
 
     var data: LiveData<List<RecipeWithImages>> = recipesDao.getRecipes()
 
-    fun getRecipeWithSimilar(uuid: String) = recipesDao.getRecipeByUUID(uuid)
+    fun getRecipeById(uuid: String) = recipesDao.getRecipeByUUID(uuid)
 
     suspend fun refresh() {
         withContext(Dispatchers.IO) {

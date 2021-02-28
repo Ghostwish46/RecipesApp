@@ -9,13 +9,14 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ActivityRecipeDetailsBinding
 import dev.ghost.recipesapp.model.network.Status
+import dev.ghost.recipesapp.presentation.recipe_images.RecipeImagesActivity
+import dev.ghost.recipesapp.presentation.recipe_images.RecipeImagesAdapter
 import dev.ghost.recipesapp.presentation.utils.PlaceholderShimmerDrawable
 
 class RecipeDetailsActivity : AppCompatActivity() {
@@ -37,12 +38,19 @@ class RecipeDetailsActivity : AppCompatActivity() {
             intentDetails.putExtra(RECIPE_UUID, it.recipe.uuid)
             startActivity(intentDetails)
         }
+        recipeDetailsViewModel.recipeImagesAdapter = RecipeImagesAdapter {
+            val intentDetails = Intent(this, RecipeImagesActivity::class.java)
+            intentDetails.putExtra(RECIPE_UUID, it.recipeUUID)
+            startActivity(intentDetails)
+        }
 
         activityRecipeDetailsBinding.recipeDetailsRecyclerSimilar.apply {
             adapter = recipeDetailsViewModel.similarRecipesAdapter
             layoutManager =
                 LinearLayoutManager(this@RecipeDetailsActivity, RecyclerView.HORIZONTAL, false)
         }
+        activityRecipeDetailsBinding.recipeDetailsViewPagerImages.adapter =
+            recipeDetailsViewModel.recipeImagesAdapter
 
         val currentUUID = intent.getStringExtra(RECIPE_UUID)
 
@@ -50,26 +58,28 @@ class RecipeDetailsActivity : AppCompatActivity() {
         currentUUID?.let {
             observeRecipeDetails(it)
         }
+
+
     }
 
     private fun observeLoadingStates() {
         recipeDetailsViewModel.getLoadingState().observe(this, Observer {
             when (it.status) {
                 Status.RUNNING -> {
-                    activityRecipeDetailsBinding.layoutLoading.mainContainer.isVisible = true
+                    activityRecipeDetailsBinding.layoutSimilarRecipesLoading.mainContainer.isVisible = true
                     activityRecipeDetailsBinding.recipeDetailsRecyclerSimilar.isVisible = false
                 }
                 Status.SUCCESS -> {
-                    activityRecipeDetailsBinding.layoutLoading.mainContainer.isVisible = false
+                    activityRecipeDetailsBinding.layoutSimilarRecipesLoading.mainContainer.isVisible = false
                     activityRecipeDetailsBinding.recipeDetailsRecyclerSimilar.isVisible = true
                 }
                 Status.FAILED -> {
                     Toast.makeText(
                         this,
-                        getString(R.string.text_error) + it.message,
+                        getString(R.string.error_occurred) + it.message,
                         Toast.LENGTH_LONG
                     ).show()
-                    activityRecipeDetailsBinding.layoutLoading.mainContainer.isVisible = false
+                    activityRecipeDetailsBinding.layoutSimilarRecipesLoading.mainContainer.isVisible = false
                     activityRecipeDetailsBinding.recipeDetailsRecyclerSimilar.isVisible = true
                 }
             }
@@ -95,6 +105,9 @@ class RecipeDetailsActivity : AppCompatActivity() {
                             .into(recipeDetailsImage)
                     else
                         recipeDetailsImage.setImageDrawable(getDrawable(R.drawable.ic_recipe_book))
+
+                    if (recipeWithData.images.isNotEmpty())
+                        recipeDetailsViewModel.recipeImagesAdapter.submitList(recipeWithData.images)
 
                     if (recipeWithData.similarRecipes.isNotEmpty())
                         recipeDetailsViewModel.similarRecipesAdapter.submitList(recipeWithData.similarRecipes)

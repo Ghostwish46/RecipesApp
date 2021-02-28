@@ -9,6 +9,7 @@ import dev.ghost.recipesapp.App
 import dev.ghost.recipesapp.model.entities.RecipeWithImagesAndSimilar
 import dev.ghost.recipesapp.model.network.LoadingState
 import dev.ghost.recipesapp.model.repositories.RecipesRepository
+import dev.ghost.recipesapp.presentation.recipe_images.RecipeImagesAdapter
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
@@ -20,6 +21,7 @@ class RecipeDetailsViewModel(application: Application) : AndroidViewModel(applic
     private val loadingState = MutableLiveData<LoadingState>()
 
     lateinit var similarRecipesAdapter: SimilarRecipesAdapter
+    lateinit var recipeImagesAdapter: RecipeImagesAdapter
 
     init {
         (application as App).appComponent.inject(this)
@@ -28,7 +30,7 @@ class RecipeDetailsViewModel(application: Application) : AndroidViewModel(applic
     fun getLoadingState() = loadingState
     fun getRecipeWithSimilar(uuid: String): LiveData<RecipeWithImagesAndSimilar> {
         fetchRecipeDetails(uuid)
-        return recipesRepository.getRecipeWithSimilar(uuid)
+        return recipesRepository.getRecipeById(uuid)
     }
 
     private fun fetchRecipeDetails(uuid: String) {

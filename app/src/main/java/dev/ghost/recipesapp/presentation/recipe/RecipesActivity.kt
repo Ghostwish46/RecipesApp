@@ -3,12 +3,10 @@ package dev.ghost.recipesapp.presentation.recipe
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ActivityRecipesBinding
@@ -56,7 +54,7 @@ class RecipesActivity : AppCompatActivity() {
                 Status.FAILED -> {
                     Toast.makeText(
                         this,
-                        getString(R.string.text_error) + it.message,
+                        getString(R.string.error_occurred) + it.message,
                         Toast.LENGTH_LONG
                     ).show()
                     activityRecipesBinding.layoutLoading.mainContainer.isVisible = false

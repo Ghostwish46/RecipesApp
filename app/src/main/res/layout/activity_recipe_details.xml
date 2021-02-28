@@ -57,11 +57,17 @@
 
         </LinearLayout>
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/recipeDetailsViewPagerImages"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+        </androidx.viewpager2.widget.ViewPager2>
         <ImageView
             android:id="@+id/recipeDetailsImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            app:srcCompat="@drawable/ic_error_loading" />
 
         <TextView
             android:layout_width="match_parent"
@@ -105,7 +111,7 @@
 
             <include
                 layout="@layout/layout_loading"
-                android:id="@+id/layoutLoading"
+                android:id="@+id/layoutSimilarRecipesLoading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />

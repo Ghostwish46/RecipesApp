@@ -6,6 +6,11 @@
     <string name="hint_difficulty">Сложность: </string>
     <string name="hint_instructions">Инструкции по приготовлению: </string>
 
+    <string name="error_occurred">An error occurred: </string>
 
-    <string name="text_error">An error occurred: </string>
+    <string name="error_access_denied">Access denied.</string>
+
+    <string name="title_activity_recipe_images">RecipeImagesActivity</string>
+
+    <string name="info_file_saved">Image saved into\n</string>
 </resources>

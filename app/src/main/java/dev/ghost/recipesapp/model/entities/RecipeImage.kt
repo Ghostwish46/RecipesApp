@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(tableName = "recipeImages", primaryKeys = ["recipeUUID", "path"])
-class RecipeImage(
+data class RecipeImage(
     val recipeUUID: String,
     val path: String
 ) {
