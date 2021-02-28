@@ -29,7 +29,12 @@ class SimilarRecipeViewHolder(private val itemSimilarRecipeBinding: ItemSimilarR
                     .error(R.drawable.ic_error_loading)
                     .into(similarRecipeImage)
             else
-                similarRecipeImage.setImageDrawable(getDrawable(root.context, R.drawable.ic_recipe_book))
+                similarRecipeImage.setImageDrawable(
+                    getDrawable(
+                        root.context,
+                        R.drawable.ic_recipe_book
+                    )
+                )
         }
     }
 }

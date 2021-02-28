@@ -20,7 +20,6 @@ class NetworkModule {
     fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
 
-        //TODO While release change the Level to NONE
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
 
         return OkHttpClient.Builder()

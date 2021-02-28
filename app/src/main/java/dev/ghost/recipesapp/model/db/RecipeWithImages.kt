@@ -12,5 +12,4 @@ data class RecipeWithImages(
         parentColumn = "uuid"
     )
     val images: List<RecipeImage>
-) {
-}
+)

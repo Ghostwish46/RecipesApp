@@ -6,7 +6,7 @@ import dev.ghost.recipesapp.RecipesApplication
 import dev.ghost.recipesapp.model.repositories.RecipesRepository
 import javax.inject.Inject
 
-class RecipeImagesViewModel(application: Application) :AndroidViewModel(application) {
+class RecipeImagesViewModel(application: Application) : AndroidViewModel(application) {
     @Inject
     lateinit var recipesRepository: RecipesRepository
 
@@ -16,6 +16,5 @@ class RecipeImagesViewModel(application: Application) :AndroidViewModel(applicat
         (application as RecipesApplication).appComponent.inject(this)
     }
 
-    // Нужно ли сделать отдельный метод для RecipeWithImages, не таская похожих?
-    fun getImages(uuid:String) = recipesRepository.getRecipeById(uuid)
+    fun getImages(uuid: String) = recipesRepository.getRecipeWithImagesByUUID(uuid)
 }

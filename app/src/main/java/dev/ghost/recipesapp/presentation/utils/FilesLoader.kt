@@ -15,7 +15,7 @@ class FilesLoader {
     private val formatter =
         SimpleDateFormat("yyyy_MM_dd_HHmmss", Locale.UK)
 
-    fun saveImageToGallery(resource: Bitmap, context: Context) : String {
+    fun saveImageToGallery(resource: Bitmap, context: Context): String {
         val now = Date()
         val fileName: String = formatter.format(now) + ".png"
 

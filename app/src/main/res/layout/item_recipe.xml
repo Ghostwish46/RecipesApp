@@ -12,37 +12,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/margin_normal">
+        android:paddingBottom="@dimen/padding_normal">
 
         <ImageView
             android:id="@+id/recipeImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_recipe_book" />
+            app:srcCompat="@drawable/ic_recipe_book"
+            android:contentDescription="@string/description_recipe_image"/>
 
         <TextView
             android:id="@+id/recipeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:textColor="@color/black"
-            android:textSize="30sp"
             android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginEnd="@dimen/margin_normal"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large"
             tools:text="Pan Roasted Chicken" />
 
         <TextView
             android:id="@+id/recipeDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginEnd="@dimen/margin_normal"
             android:textColor="@color/dark_gray"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_normal"
             tools:text="Awesome food!" />
     </LinearLayout>
 

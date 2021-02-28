@@ -25,15 +25,19 @@ import java.util.*
 class RecipeImagesActivity : AppCompatActivity() {
     companion object {
         const val DOWNLOADING_CODE = 1001
+        const val ADAPTER_POSITION = "adapter_position"
     }
 
     lateinit var recipeImagesViewModel: RecipeImagesViewModel
     lateinit var activityRecipeImagesBinding: ActivityRecipeImagesBinding
+    private var adapterPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityRecipeImagesBinding = ActivityRecipeImagesBinding.inflate(layoutInflater)
         setContentView(activityRecipeImagesBinding.root)
+
+        adapterPosition = intent.getIntExtra(ADAPTER_POSITION, 0)
 
         recipeImagesViewModel = ViewModelProvider(this).get(RecipeImagesViewModel::class.java)
         recipeImagesViewModel.recipeImagesAdapter = RecipeImagesAdapter {}
@@ -67,8 +71,13 @@ class RecipeImagesActivity : AppCompatActivity() {
 
     private fun observeRecipeImages(uuid: String) {
         recipeImagesViewModel.getImages(uuid).observe(this, {
-            if (it.images.isNotEmpty())
+            if (it.images.isNotEmpty()) {
                 recipeImagesViewModel.recipeImagesAdapter.submitList(it.images)
+                activityRecipeImagesBinding.recipeImagesViewPager.setCurrentItem(
+                    adapterPosition,
+                    false
+                )
+            }
         })
     }
 

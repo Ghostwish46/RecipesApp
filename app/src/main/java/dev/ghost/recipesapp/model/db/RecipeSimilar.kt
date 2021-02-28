@@ -6,5 +6,4 @@ import androidx.room.Entity
 class RecipeSimilar(
     val originalUUID: String,
     val similar: String
-) {
-}
+)

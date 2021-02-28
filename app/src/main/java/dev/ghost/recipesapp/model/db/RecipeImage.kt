@@ -6,5 +6,4 @@ import androidx.room.Entity
 data class RecipeImage(
     val recipeUUID: String,
     val path: String
-) {
-}
+)

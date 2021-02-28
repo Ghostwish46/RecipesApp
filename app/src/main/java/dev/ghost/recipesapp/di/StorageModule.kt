@@ -19,5 +19,4 @@ class StorageModule {
         recipeSimilarDao: RecipeSimilarDao,
         apiService: ApiService
     ) = RecipesRepository(recipesDao, recipeImagesDao, recipeSimilarDao, apiService)
-
 }

@@ -14,12 +14,12 @@ class DataBaseModule {
     @Provides
     @Singleton
     fun provideRoomDataBase(@ApplicationContext context: Context) = Room.databaseBuilder(
-            context,
-            RecipesDataBase::class.java,
-            dbName
+        context,
+        RecipesDataBase::class.java,
+        dbName
     )
-            .fallbackToDestructiveMigration()
-            .build()
+        .fallbackToDestructiveMigration()
+        .build()
 
     @Provides
     @Singleton
@@ -31,5 +31,6 @@ class DataBaseModule {
 
     @Provides
     @Singleton
-    fun provideRecipeSimilarDao(recipesDataBase: RecipesDataBase) = recipesDataBase.recipeSimilarDao()
+    fun provideRecipeSimilarDao(recipesDataBase: RecipesDataBase) =
+        recipesDataBase.recipeSimilarDao()
 }

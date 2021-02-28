@@ -25,5 +25,4 @@ data class RecipeWithImagesAndSimilar(
         )
     )
     val similarRecipes: List<RecipeWithImages>
-) {
-}
+)

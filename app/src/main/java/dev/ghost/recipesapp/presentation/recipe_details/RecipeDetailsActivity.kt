@@ -47,6 +47,10 @@ class RecipeDetailsActivity : AppCompatActivity() {
         recipeDetailsViewModel.recipeImagesAdapter = RecipeImagesAdapter {
             val intentDetails = Intent(this, RecipeImagesActivity::class.java)
             intentDetails.putExtra(RECIPE_UUID, it.recipeUUID)
+            intentDetails.putExtra(
+                RecipeImagesActivity.ADAPTER_POSITION,
+                activityRecipeDetailsBinding.recipeDetailsViewPagerImages.currentItem
+            )
             startActivity(intentDetails)
         }
 
@@ -80,7 +84,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
     }
 
     private fun observeLoadingStates() {
-        recipeDetailsViewModel.getLoadingState().observe(this, Observer {
+        recipeDetailsViewModel.getLoadingState().observe(this, {
             when (it.status) {
                 Status.RUNNING -> {
                     activityRecipeDetailsBinding.layoutSimilarRecipesLoading.mainContainer.isVisible =
@@ -123,15 +127,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
                     recipeDetailsDifficulty.rating = recipeWithData.recipe.difficulty.toFloat()
 
-                    if (recipeWithData.images.isNotEmpty())
-                        Glide.with(recipeDetailsImage)
-                            .load(recipeWithData.images.first().path)
-                            .placeholder(PlaceholderShimmerDrawable(this@RecipeDetailsActivity).shimmerDrawable)
-                            .error(R.drawable.ic_error_loading)
-                            .into(recipeDetailsImage)
-                    else
-                        recipeDetailsImage.setImageDrawable(getDrawable(R.drawable.ic_recipe_book))
-
                     if (recipeWithData.images.isNotEmpty()) {
                         recipeDetailsViewModel.recipeImagesAdapter.submitList(recipeWithData.images)
                         activityRecipeDetailsBinding.textRecipeImagesPosition.text =
@@ -146,19 +141,22 @@ class RecipeDetailsActivity : AppCompatActivity() {
                     else if (recipeWithData.similarRecipes.isNotEmpty()) {
                         recipeDetailsViewModel.similarRecipesAdapter.submitList(recipeWithData.similarRecipes)
                         showSimilarRecipesData()
+                        recipeDetailsViewModel.fetchSimilarRecipesInfo(recipeWithData.similarRecipes.filter {
+                            it.images.isEmpty()
+                        })
                     }
                 }
             })
     }
 
     private fun showSimilarRecipesData() {
+        if (recipeDetailsViewModel.getLoadingState().value != LoadingState.LOADING)
+            activityRecipeDetailsBinding.layoutNoSimilarRecipes.mainContainer.isVisible = false
         activityRecipeDetailsBinding.recipeDetailsRecyclerSimilar.isVisible = true
-        activityRecipeDetailsBinding.layoutNoSimilarRecipes.mainContainer.isVisible = false
     }
 
     private fun hideSimilarRecipesData() {
         activityRecipeDetailsBinding.recipeDetailsRecyclerSimilar.isVisible = false
         activityRecipeDetailsBinding.layoutNoSimilarRecipes.mainContainer.isVisible = true
     }
-
 }

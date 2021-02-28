@@ -9,17 +9,21 @@ import dev.ghost.recipesapp.model.db.RecipeWithImagesAndSimilar
 @Dao
 interface RecipesDao {
     @Query("SELECT * FROM recipes")
-    fun getRecipes(): LiveData<List<RecipeWithImages>>
+    fun getRecipesWithImages(): LiveData<List<RecipeWithImages>>
 
     @Query("SELECT * FROM recipes where LOWER(name) LIKE :searchWord or LOWER(description) LIKE :searchWord or LOWER(instructions) LIKE :searchWord order by name")
-    fun getRecipesByFilters(searchWord:String): LiveData<List<RecipeWithImages>>
+    fun getRecipesWithImagesByFilters(searchWord: String): LiveData<List<RecipeWithImages>>
 
     @Transaction
     @Query("SELECT * FROM recipes where uuid = :uuid")
-    fun getRecipeByUUID(uuid:String): LiveData<RecipeWithImagesAndSimilar>
+    fun getRecipeFullInfoByUUID(uuid: String): LiveData<RecipeWithImagesAndSimilar>
+
+    @Transaction
+    @Query("SELECT * FROM recipes where uuid = :uuid")
+    fun getRecipeWithImagesByUUID(uuid: String): LiveData<RecipeWithImages>
 
     @Query("SELECT * FROM recipes where uuid = :uuid")
-    fun isRecipeExists(uuid: String):Int
+    fun isRecipeExists(uuid: String): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(recipe: Recipe)

@@ -18,10 +18,12 @@ class RecipesRepository(
     private val apiService: ApiService
 ) {
 
-    fun getRecipeById(uuid: String) = recipesDao.getRecipeByUUID(uuid)
+    fun getRecipeFullInfoByUUID(uuid: String) = recipesDao.getRecipeFullInfoByUUID(uuid)
 
     fun getRecipesByFilters(searchWord: String) =
-        recipesDao.getRecipesByFilters(searchWord)
+        recipesDao.getRecipesWithImagesByFilters(searchWord)
+
+    fun getRecipeWithImagesByUUID(uuid: String) = recipesDao.getRecipeWithImagesByUUID(uuid)
 
     suspend fun refresh() {
         withContext(Dispatchers.IO) {

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/mainContainer"
     android:orientation="vertical">
 
     <ImageView
@@ -12,6 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
+        android:contentDescription="@string/description_logo"
         app:srcCompat="@drawable/ic_recipe_book" />
 
     <TextView
@@ -26,5 +26,5 @@
         android:text="@string/error_no_recipes_found"
         android:textAlignment="center"
         android:textColor="@color/dark_gray"
-        android:textSize="18sp" />
+        android:textSize="@dimen/font_normal" />
 </LinearLayout>
