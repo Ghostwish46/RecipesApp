@@ -29,27 +29,33 @@ class RecipesActivity : AppCompatActivity() {
             startActivity(intentDetails)
         }
 
-        activityRecipesBinding.recyclerRecipes.apply {
-            adapter = recipesViewModel.recipesAdapter
-            layoutManager = LinearLayoutManager(this@RecipesActivity)
-        }
+        with(activityRecipesBinding) {
+            recyclerRecipes.apply {
+                adapter = recipesViewModel.recipesAdapter
+                layoutManager = LinearLayoutManager(this@RecipesActivity)
+            }
 
-        activityRecipesBinding.refreshRecipes.setOnRefreshListener {
-            recipesViewModel.fetchData()
-        }
+            refreshRecipes.setOnRefreshListener {
+                recipesViewModel.fetchData()
+            }
 
-        activityRecipesBinding.editRecipesSearching.addTextChangedListener {
-            recipesViewModel.getSearchingData().postValue("%${it.toString().toLowerCase()}%")
-        }
+            editRecipesSearching.addTextChangedListener {
+                recipesViewModel.getSearchingData().postValue("%${it.toString().toLowerCase()}%")
+            }
 
-        activityRecipesBinding.rbSortByName.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked)
-                recipesViewModel.getSortingData().postValue("name")
-        }
+            recipesSearchingClear.setOnClickListener {
+                editRecipesSearching.text.clear()
+            }
 
-        activityRecipesBinding.rbSortByLastUpdated.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked)
-                recipesViewModel.getSortingData().postValue("lastUpdated")
+            rbSortByName.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked)
+                    recipesViewModel.getSortingData().postValue("name")
+            }
+
+            rbSortByLastUpdated.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked)
+                    recipesViewModel.getSortingData().postValue("lastUpdated")
+            }
         }
 
         observeData()
