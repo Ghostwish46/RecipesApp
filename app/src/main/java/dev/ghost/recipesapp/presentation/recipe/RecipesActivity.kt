@@ -72,8 +72,7 @@ class RecipesActivity : AppCompatActivity() {
                     activityRecipesBinding.layoutLoading.mainContainer.isVisible = true
                 }
                 Status.SUCCESS -> {
-                    activityRecipesBinding.layoutLoading.mainContainer.isVisible = false
-                    activityRecipesBinding.refreshRecipes.isRefreshing = false
+                    finishLoading()
                 }
                 Status.FAILED -> {
                     Toast.makeText(
@@ -81,15 +80,14 @@ class RecipesActivity : AppCompatActivity() {
                         getString(R.string.error_occurred) + it.message,
                         Toast.LENGTH_LONG
                     ).show()
-                    activityRecipesBinding.layoutLoading.mainContainer.isVisible = false
-                    activityRecipesBinding.refreshRecipes.isRefreshing = false
+                    finishLoading()
                 }
             }
         })
     }
 
     private fun observeData() {
-        recipesViewModel.results.observe(this, Observer { recipesList ->
+        recipesViewModel.resultsData.observe(this, { recipesList ->
             if (recipesList.isEmpty() && recipesViewModel.getLoadingState().value != LoadingState.LOADING)
                 hideRecipesData()
             else if (recipesList.isNotEmpty()) {
@@ -101,8 +99,12 @@ class RecipesActivity : AppCompatActivity() {
                     })
                 showRecipesData()
             }
-
         })
+    }
+
+    private fun finishLoading() {
+        activityRecipesBinding.layoutLoading.mainContainer.isVisible = false
+        activityRecipesBinding.refreshRecipes.isRefreshing = false
     }
 
     private fun showRecipesData() {

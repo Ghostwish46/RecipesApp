@@ -28,6 +28,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
     lateinit var activityRecipeDetailsBinding: ActivityRecipeDetailsBinding
     lateinit var recipeDetailsViewModel: RecipeDetailsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityRecipeDetailsBinding = ActivityRecipeDetailsBinding.inflate(layoutInflater)
@@ -49,12 +50,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
             startActivity(intentDetails)
         }
 
-        activityRecipeDetailsBinding.recipeDetailsRecyclerSimilar.apply {
-            adapter = recipeDetailsViewModel.similarRecipesAdapter
-            layoutManager =
-                LinearLayoutManager(this@RecipeDetailsActivity, RecyclerView.HORIZONTAL, false)
-        }
-
         val currentUUID = intent.getStringExtra(RECIPE_UUID)
 
         observeLoadingStates()
@@ -62,18 +57,26 @@ class RecipeDetailsActivity : AppCompatActivity() {
             observeRecipeDetails(it)
         }
 
-        activityRecipeDetailsBinding.recipeDetailsViewPagerImages.registerOnPageChangeCallback(
-            object :
-                ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    activityRecipeDetailsBinding.textRecipeImagesPosition.text =
-                        "${position + 1} of ${recipeDetailsViewModel.recipeImagesAdapter.itemCount}"
-                }
-            })
+        with(activityRecipeDetailsBinding) {
+            recipeDetailsRecyclerSimilar.apply {
+                adapter = recipeDetailsViewModel.similarRecipesAdapter
+                layoutManager =
+                    LinearLayoutManager(this@RecipeDetailsActivity, RecyclerView.HORIZONTAL, false)
+            }
 
-        activityRecipeDetailsBinding.recipeDetailsViewPagerImages.adapter =
-            recipeDetailsViewModel.recipeImagesAdapter
+            recipeDetailsViewPagerImages.registerOnPageChangeCallback(
+                object :
+                    ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        textRecipeImagesPosition.text =
+                            "${position + 1} of ${recipeDetailsViewModel.recipeImagesAdapter.itemCount}"
+                    }
+                })
+
+            recipeDetailsViewPagerImages.adapter =
+                recipeDetailsViewModel.recipeImagesAdapter
+        }
     }
 
     private fun observeLoadingStates() {

@@ -22,7 +22,12 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
 
     lateinit var recipesAdapter: RecipesAdapter
 
-    private val filtersMediator = MediatorLiveData<FilteringParams>()
+    private val filtersMediator = MediatorLiveData<String>()
+
+    val resultsData: LiveData<List<RecipeWithImages>> =
+        Transformations.switchMap(filtersMediator) {
+            recipesRepository.getRecipesByFilters(it)
+        }
 
     init {
         (application as RecipesApplication).appComponent.inject(this)
@@ -36,20 +41,10 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
 
     private fun observeMediator() {
         filtersMediator.addSource(searchingData) {
-            filtersMediator.postValue(
-                FilteringParams(
-                    it,
-                    sortingData.value.toString()
-                )
-            )
+            filtersMediator.postValue(it)
         }
         filtersMediator.addSource(sortingData) {
-            filtersMediator.postValue(
-                FilteringParams(
-                    searchingData.value.toString(),
-                    it
-                )
-            )
+            filtersMediator.postValue(searchingData.value.toString())
         }
     }
 
@@ -64,9 +59,4 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
             }
         }
     }
-
-    val results: LiveData<List<RecipeWithImages>> =
-        Transformations.switchMap(filtersMediator) {
-            recipesRepository.getRecipesByFilters(it.searching)
-        }
 }
