@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">RecipesApp</string>
+
+    <string name="title_activity_recipe_images">Recipe images</string>
+    <string name="title_activity_recipes">Recipes App</string>
+    <string name="title_activity_recipe_details">Recipe details</string>
+
+    <string name="header_similar_recipes">Similar recipes:</string>
+
+    <string name="hint_difficulty">Difficulty: </string>
+    <string name="hint_instructions">Instructions: </string>
+    <string name="hint_searching">Input text for searching</string>
+
+    <string name="placeholder_description">No description yet…</string>
+
+    <string name="action_sort_by_name">Sort by name</string>
+    <string name="action_sort_by_last_updated">Sort by last updated</string>
+
+    <string name="error_occurred">An error occurred: </string>
+    <string name="error_access_denied">Access denied.</string>
+    <string name="error_no_recipes_found">We\'re sorry, but no recipes found. You can try to change your searching criteria.</string>
+    <string name="error_no_similar_recipes">No similar recipes found.</string>
+
+    <string name="info_file_saved">Image saved into\n</string>
+
+    <string name="description_logo">Application logo</string>
+    <string name="description_recipe_image">Recipe\'s image</string>
+    <string name="description_download_image">Icon for save image to gallery</string>
+    <string name="auto_fill_food_searching">Chicken|Pasta|Meat</string>
+    <string name="description_clear_searching">Image for clear searching field</string>
 </resources>

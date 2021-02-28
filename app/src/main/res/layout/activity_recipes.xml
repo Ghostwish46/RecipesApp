@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.recipe.RecipesActivity">
+
+    <include
+        android:id="@+id/layoutNothing"
+        layout="@layout/layout_nothing_found"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/refreshRecipes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
+    <include
+        android:id="@+id/layoutLoading"
+        layout="@layout/layout_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/container_rounded_background"
+        android:padding="@dimen/margin_normal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <EditText
+            android:id="@+id/editRecipesSearching"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/auto_fill_food_searching"
+            android:background="@drawable/edit_text_rounded_background"
+            android:ems="10"
+            android:hint="@string/hint_searching"
+            android:inputType="textPersonName"
+            android:padding="@dimen/padding_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="@drawable/selector_out_line"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editRecipesSearching">
+
+            <RadioButton
+                android:id="@+id/rbSortByName"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:checked="true"
+                android:padding="@dimen/padding_normal"
+                android:text="@string/action_sort_by_name"
+                android:textAlignment="center" />
+
+            <RadioButton
+                android:id="@+id/rbSortByLastUpdated"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:padding="@dimen/padding_normal"
+                android:text="@string/action_sort_by_last_updated"
+                android:textAlignment="center" />
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/recipesSearchingClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:contentDescription="@string/description_clear_searching"
+            app:layout_constraintBottom_toBottomOf="@+id/editRecipesSearching"
+            app:layout_constraintEnd_toEndOf="@+id/editRecipesSearching"
+            app:layout_constraintTop_toTopOf="@+id/editRecipesSearching"
+            app:srcCompat="@drawable/ic_clear" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
