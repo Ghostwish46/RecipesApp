@@ -1,15 +1,13 @@
 package dev.ghost.recipesapp.model.repositories
 
-import androidx.lifecycle.LiveData
-import dev.ghost.recipesapp.model.db.RecipeImagesDao
-import dev.ghost.recipesapp.model.db.RecipeSimilarDao
-import dev.ghost.recipesapp.model.db.RecipesDao
-import dev.ghost.recipesapp.model.domain.RecipeResult
-import dev.ghost.recipesapp.model.entities.Recipe
-import dev.ghost.recipesapp.model.entities.RecipeImage
-import dev.ghost.recipesapp.model.entities.RecipeSimilar
-import dev.ghost.recipesapp.model.entities.RecipeWithImages
-import dev.ghost.recipesapp.model.network.ApiService
+import dev.ghost.recipesapp.data.local.db.dao.RecipeImagesDao
+import dev.ghost.recipesapp.data.local.db.dao.RecipeSimilarDao
+import dev.ghost.recipesapp.data.local.db.dao.RecipesDao
+import dev.ghost.recipesapp.model.api.RecipeResult
+import dev.ghost.recipesapp.model.db.Recipe
+import dev.ghost.recipesapp.model.db.RecipeImage
+import dev.ghost.recipesapp.model.db.RecipeSimilar
+import dev.ghost.recipesapp.data.remote.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -19,8 +17,6 @@ class RecipesRepository(
     private val recipeSimilarDao: RecipeSimilarDao,
     private val apiService: ApiService
 ) {
-
-    var data: LiveData<List<RecipeWithImages>> = recipesDao.getRecipes()
 
     fun getRecipeById(uuid: String) = recipesDao.getRecipeByUUID(uuid)
 

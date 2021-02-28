@@ -12,7 +12,6 @@ import android.os.Environment
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
@@ -20,7 +19,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ActivityRecipeImagesBinding
-import dev.ghost.recipesapp.model.entities.RecipeImage
+import dev.ghost.recipesapp.model.db.RecipeImage
 import dev.ghost.recipesapp.presentation.recipe_details.RecipeDetailsActivity
 import java.io.File
 import java.io.FileOutputStream
@@ -43,7 +42,7 @@ class RecipeImagesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         activityRecipeImagesBinding = ActivityRecipeImagesBinding.inflate(layoutInflater)
         setContentView(activityRecipeImagesBinding.root)
-//        actionBar?.title = "Meow!"
+
         setSupportActionBar(activityRecipeImagesBinding.toolbar)
 
         recipeImagesViewModel = ViewModelProvider(this).get(RecipeImagesViewModel::class.java)

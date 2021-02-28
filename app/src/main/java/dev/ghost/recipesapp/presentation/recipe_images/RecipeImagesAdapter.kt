@@ -4,11 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
-import dev.ghost.recipesapp.R
-import dev.ghost.recipesapp.databinding.ItemRecipeBinding
 import dev.ghost.recipesapp.databinding.ItemRecipeImageBinding
-import dev.ghost.recipesapp.model.entities.RecipeImage
-import dev.ghost.recipesapp.model.entities.RecipeWithImages
+import dev.ghost.recipesapp.model.db.RecipeImage
 
 class RecipeImagesAdapter(
     private val onImageClickListener: (RecipeImage) -> Unit

@@ -2,10 +2,10 @@ package dev.ghost.recipesapp.di
 
 import dagger.Module
 import dagger.Provides
-import dev.ghost.recipesapp.model.db.RecipeImagesDao
-import dev.ghost.recipesapp.model.db.RecipeSimilarDao
-import dev.ghost.recipesapp.model.db.RecipesDao
-import dev.ghost.recipesapp.model.network.ApiService
+import dev.ghost.recipesapp.data.local.db.dao.RecipeImagesDao
+import dev.ghost.recipesapp.data.local.db.dao.RecipeSimilarDao
+import dev.ghost.recipesapp.data.local.db.dao.RecipesDao
+import dev.ghost.recipesapp.data.remote.ApiService
 import dev.ghost.recipesapp.model.repositories.RecipesRepository
 import javax.inject.Singleton
 

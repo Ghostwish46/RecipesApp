@@ -1,9 +1,6 @@
-package dev.ghost.recipesapp.model.entities
+package dev.ghost.recipesapp.model.db
 
 import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "recipeImages", primaryKeys = ["recipeUUID", "path"])
 data class RecipeImage(

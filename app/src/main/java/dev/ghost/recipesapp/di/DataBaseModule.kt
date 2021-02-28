@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import dev.ghost.recipesapp.model.db.RecipesDataBase
+import dev.ghost.recipesapp.data.local.db.RecipesDataBase
 import javax.inject.Singleton
 
 @Module

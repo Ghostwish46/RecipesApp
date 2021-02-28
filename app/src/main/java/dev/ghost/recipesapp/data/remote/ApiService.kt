@@ -1,12 +1,10 @@
-package dev.ghost.recipesapp.model.network
+package dev.ghost.recipesapp.data.remote
 
 
-import dev.ghost.recipesapp.model.domain.RecipeDetailsResponse
-import dev.ghost.recipesapp.model.domain.RecipeResponse
-import dev.ghost.recipesapp.model.domain.RecipeResult
+import dev.ghost.recipesapp.model.api.RecipeDetailsResponse
+import dev.ghost.recipesapp.model.api.RecipeResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
-import java.util.*
 
 interface ApiService {
     @GET("recipes")

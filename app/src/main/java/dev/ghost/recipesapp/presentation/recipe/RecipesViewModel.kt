@@ -2,9 +2,9 @@ package dev.ghost.recipesapp.presentation.recipe
 
 import android.app.Application
 import androidx.lifecycle.*
-import dev.ghost.recipesapp.App
-import dev.ghost.recipesapp.model.entities.RecipeWithImages
-import dev.ghost.recipesapp.model.network.LoadingState
+import dev.ghost.recipesapp.RecipesApplication
+import dev.ghost.recipesapp.model.db.RecipeWithImages
+import dev.ghost.recipesapp.data.remote.LoadingState
 import dev.ghost.recipesapp.model.repositories.RecipesRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
     private val filtersMediator = MediatorLiveData<FilteringParams>()
 
     init {
-        (application as App).appComponent.inject(this)
+        (application as RecipesApplication).appComponent.inject(this)
         observeMediator()
         fetchData()
     }

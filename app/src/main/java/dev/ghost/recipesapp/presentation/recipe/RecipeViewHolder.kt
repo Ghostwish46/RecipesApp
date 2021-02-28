@@ -1,16 +1,11 @@
 package dev.ghost.recipesapp.presentation.recipe
 
-import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.facebook.shimmer.Shimmer
-import com.facebook.shimmer.ShimmerDrawable
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ItemRecipeBinding
-import dev.ghost.recipesapp.model.entities.Recipe
-import dev.ghost.recipesapp.model.entities.RecipeWithImages
+import dev.ghost.recipesapp.model.db.RecipeWithImages
 import dev.ghost.recipesapp.presentation.utils.PlaceholderShimmerDrawable
 
 class RecipeViewHolder(private val itemRecipeBinding: ItemRecipeBinding) :

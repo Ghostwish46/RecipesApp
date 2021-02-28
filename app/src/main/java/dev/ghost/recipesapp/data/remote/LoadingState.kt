@@ -1,4 +1,4 @@
-package dev.ghost.recipesapp.model.network
+package dev.ghost.recipesapp.data.remote
 
 // Data class for checking network state while loading data.
 data class LoadingState constructor(

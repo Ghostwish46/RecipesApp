@@ -1,10 +1,8 @@
-package dev.ghost.recipesapp.model.db
+package dev.ghost.recipesapp.data.local.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import dev.ghost.recipesapp.model.entities.Recipe
-import dev.ghost.recipesapp.model.entities.RecipeImage
-import dev.ghost.recipesapp.model.entities.RecipeSimilar
+import dev.ghost.recipesapp.model.db.RecipeSimilar
 
 @Dao
 interface RecipeSimilarDao {

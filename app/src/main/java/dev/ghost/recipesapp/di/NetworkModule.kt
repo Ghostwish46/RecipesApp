@@ -3,8 +3,8 @@ package dev.ghost.recipesapp.di
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
-import dev.ghost.recipesapp.model.network.ApiService
-import dev.ghost.recipesapp.model.network.ApiUtils
+import dev.ghost.recipesapp.data.remote.ApiService
+import dev.ghost.recipesapp.data.remote.ApiUtils
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

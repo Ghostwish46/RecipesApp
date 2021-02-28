@@ -5,7 +5,7 @@ import dev.ghost.recipesapp.di.AppComponent
 import dev.ghost.recipesapp.di.AppModule
 import dev.ghost.recipesapp.di.DaggerAppComponent
 
-class App:Application() {
+class RecipesApplication : Application() {
     lateinit var appComponent: AppComponent
 
     override fun onCreate() {

@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import dev.ghost.recipesapp.App
-import dev.ghost.recipesapp.model.entities.RecipeWithImagesAndSimilar
-import dev.ghost.recipesapp.model.network.LoadingState
+import dev.ghost.recipesapp.RecipesApplication
+import dev.ghost.recipesapp.model.db.RecipeWithImagesAndSimilar
+import dev.ghost.recipesapp.data.remote.LoadingState
 import dev.ghost.recipesapp.model.repositories.RecipesRepository
 import dev.ghost.recipesapp.presentation.recipe_images.RecipeImagesAdapter
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ class RecipeDetailsViewModel(application: Application) : AndroidViewModel(applic
     lateinit var recipeImagesAdapter: RecipeImagesAdapter
 
     init {
-        (application as App).appComponent.inject(this)
+        (application as RecipesApplication).appComponent.inject(this)
     }
 
     fun getLoadingState() = loadingState

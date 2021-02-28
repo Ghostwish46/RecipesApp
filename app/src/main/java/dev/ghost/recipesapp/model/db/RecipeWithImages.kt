@@ -1,4 +1,4 @@
-package dev.ghost.recipesapp.model.entities
+package dev.ghost.recipesapp.model.db
 
 import androidx.room.Embedded
 import androidx.room.Relation

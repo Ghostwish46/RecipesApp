@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ItemSimilarRecipeBinding
-import dev.ghost.recipesapp.model.entities.RecipeWithImages
+import dev.ghost.recipesapp.model.db.RecipeWithImages
 import dev.ghost.recipesapp.presentation.utils.PlaceholderShimmerDrawable
 
 class SimilarRecipeViewHolder(private val itemSimilarRecipeBinding: ItemSimilarRecipeBinding) :

@@ -1,8 +1,6 @@
-package dev.ghost.recipesapp.model.entities
+package dev.ghost.recipesapp.model.db
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "recipeSimilar", primaryKeys = ["originalUUID", "similar"])
 class RecipeSimilar(

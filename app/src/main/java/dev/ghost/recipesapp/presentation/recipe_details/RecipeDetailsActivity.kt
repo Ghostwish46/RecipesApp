@@ -15,8 +15,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ActivityRecipeDetailsBinding
-import dev.ghost.recipesapp.model.network.LoadingState
-import dev.ghost.recipesapp.model.network.Status
+import dev.ghost.recipesapp.data.remote.LoadingState
+import dev.ghost.recipesapp.data.remote.Status
 import dev.ghost.recipesapp.presentation.recipe_images.RecipeImagesActivity
 import dev.ghost.recipesapp.presentation.recipe_images.RecipeImagesAdapter
 import dev.ghost.recipesapp.presentation.utils.PlaceholderShimmerDrawable
@@ -54,8 +54,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
             layoutManager =
                 LinearLayoutManager(this@RecipeDetailsActivity, RecyclerView.HORIZONTAL, false)
         }
-
-
 
         val currentUUID = intent.getStringExtra(RECIPE_UUID)
 
@@ -131,8 +129,11 @@ class RecipeDetailsActivity : AppCompatActivity() {
                     else
                         recipeDetailsImage.setImageDrawable(getDrawable(R.drawable.ic_recipe_book))
 
-                    if (recipeWithData.images.isNotEmpty()){
+                    if (recipeWithData.images.isNotEmpty()) {
                         recipeDetailsViewModel.recipeImagesAdapter.submitList(recipeWithData.images)
+                        activityRecipeDetailsBinding.textRecipeImagesPosition.text =
+                            "${activityRecipeDetailsBinding.recipeDetailsViewPagerImages.currentItem + 1} " +
+                                    "of ${recipeDetailsViewModel.recipeImagesAdapter.itemCount}"
                     }
 
                     if (recipeWithData.similarRecipes.isEmpty() &&

@@ -11,13 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ActivityRecipesBinding
-import dev.ghost.recipesapp.model.network.LoadingState
-import dev.ghost.recipesapp.model.network.Status
+import dev.ghost.recipesapp.data.remote.LoadingState
+import dev.ghost.recipesapp.data.remote.Status
 import dev.ghost.recipesapp.presentation.recipe_details.RecipeDetailsActivity
 
 class RecipesActivity : AppCompatActivity() {
+
     lateinit var activityRecipesBinding: ActivityRecipesBinding
     lateinit var recipesViewModel: RecipesViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityRecipesBinding = ActivityRecipesBinding.inflate(layoutInflater)

@@ -1,4 +1,4 @@
-package dev.ghost.recipesapp.model.network
+package dev.ghost.recipesapp.data.remote
 
 enum class Status {
     RUNNING,

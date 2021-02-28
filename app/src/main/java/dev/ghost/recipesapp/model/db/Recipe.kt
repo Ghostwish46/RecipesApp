@@ -1,9 +1,7 @@
-package dev.ghost.recipesapp.model.entities
+package dev.ghost.recipesapp.model.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.lang.ref.SoftReference
-import java.util.*
 
 @Entity(tableName = "recipes")
 class Recipe(

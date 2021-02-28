@@ -1,7 +1,7 @@
 package dev.ghost.recipesapp.presentation.recipe
 
 import androidx.recyclerview.widget.DiffUtil
-import dev.ghost.recipesapp.model.entities.RecipeWithImages
+import dev.ghost.recipesapp.model.db.RecipeWithImages
 
 object RecipesDiffCallback : DiffUtil.ItemCallback<RecipeWithImages>() {
     override fun areItemsTheSame(oldItem: RecipeWithImages, newItem: RecipeWithImages): Boolean {
