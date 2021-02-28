@@ -5,6 +5,11 @@
 
     <string name="hint_difficulty">Сложность: </string>
     <string name="hint_instructions">Инструкции по приготовлению: </string>
+    <string name="hint_searching">Input text for searching</string>
+
+    <string name="action_sort_by_name">By name</string>
+    <string name="action_sort_by_last_updated">By last updated</string>
+
 
     <string name="error_occurred">An error occurred: </string>
 

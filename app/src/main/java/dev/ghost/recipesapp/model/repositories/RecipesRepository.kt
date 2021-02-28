@@ -24,6 +24,9 @@ class RecipesRepository(
 
     fun getRecipeById(uuid: String) = recipesDao.getRecipeByUUID(uuid)
 
+    fun getRecipesByFilters(searchWord: String) =
+        recipesDao.getRecipesByFilters(searchWord)
+
     suspend fun refresh() {
         withContext(Dispatchers.IO) {
             val response = apiService.getRecipesAsync()

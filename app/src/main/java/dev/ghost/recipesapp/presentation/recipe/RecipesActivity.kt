@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +38,20 @@ class RecipesActivity : AppCompatActivity() {
             recipesViewModel.fetchData()
         }
 
+        activityRecipesBinding.editRecipesSearching.addTextChangedListener {
+            recipesViewModel.getSearchingData().postValue("%${it.toString().toLowerCase()}%")
+        }
+
+        activityRecipesBinding.rbSortByName.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked)
+                recipesViewModel.getSortingData().postValue("name")
+        }
+
+        activityRecipesBinding.rbSortByLastUpdated.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked)
+                recipesViewModel.getSortingData().postValue("lastUpdated")
+        }
+
         observeData()
         observeLoadingStates()
     }
@@ -65,10 +80,13 @@ class RecipesActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        recipesViewModel.getData().observe(this, Observer {
-            if (it.isNotEmpty()) {
+        recipesViewModel.results.observe(this, Observer {
+            if (recipesViewModel.getSortingData().value == "name")
                 recipesViewModel.recipesAdapter.submitList(it)
-            }
+            else
+                recipesViewModel.recipesAdapter.submitList(it.sortedByDescending { recipeData ->
+                    recipeData.recipe.lastUpdated
+                })
         })
     }
 }

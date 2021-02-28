@@ -1,36 +1,57 @@
 package dev.ghost.recipesapp.presentation.recipe
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import dev.ghost.recipesapp.App
-import dev.ghost.recipesapp.model.entities.Recipe
 import dev.ghost.recipesapp.model.entities.RecipeWithImages
 import dev.ghost.recipesapp.model.network.LoadingState
 import dev.ghost.recipesapp.model.repositories.RecipesRepository
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
+
 
 class RecipesViewModel(application: Application) : AndroidViewModel(application) {
     @Inject
     lateinit var recipesRepository: RecipesRepository
 
     private val loadingState = MutableLiveData<LoadingState>()
-    private val data: LiveData<List<RecipeWithImages>>
+    lateinit var data: MutableLiveData<List<RecipeWithImages>>
+
+    private val searchingData = MutableLiveData("%%")
+    private val sortingData = MutableLiveData("name")
 
     lateinit var recipesAdapter: RecipesAdapter
 
+    private val filtersMediator = MediatorLiveData<FilteringParams>()
+
     init {
         (application as App).appComponent.inject(this)
-        data = recipesRepository.data
+        observeMediator()
         fetchData()
     }
 
     fun getLoadingState() = loadingState
-    fun getData() = data
+    fun getSortingData() = sortingData
+    fun getSearchingData() = searchingData
+
+    private fun observeMediator() {
+        filtersMediator.addSource(searchingData) {
+            filtersMediator.postValue(
+                FilteringParams(
+                    it,
+                    sortingData.value.toString()
+                )
+            )
+        }
+        filtersMediator.addSource(sortingData) {
+            filtersMediator.postValue(
+                FilteringParams(
+                    searchingData.value.toString(),
+                    it
+                )
+            )
+        }
+    }
 
     fun fetchData() {
         viewModelScope.launch {
@@ -43,4 +64,9 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
             }
         }
     }
+
+    val results: LiveData<List<RecipeWithImages>> =
+        Transformations.switchMap(filtersMediator) {
+            recipesRepository.getRecipesByFilters(it.searching)
+        }
 }

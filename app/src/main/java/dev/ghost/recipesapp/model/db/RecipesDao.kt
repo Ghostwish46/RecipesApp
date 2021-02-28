@@ -5,11 +5,15 @@ import androidx.room.*
 import dev.ghost.recipesapp.model.entities.Recipe
 import dev.ghost.recipesapp.model.entities.RecipeWithImages
 import dev.ghost.recipesapp.model.entities.RecipeWithImagesAndSimilar
+import java.util.concurrent.Future
 
 @Dao
 interface RecipesDao {
     @Query("SELECT * FROM recipes")
     fun getRecipes(): LiveData<List<RecipeWithImages>>
+
+    @Query("SELECT * FROM recipes where LOWER(name) LIKE :searchWord or LOWER(description) LIKE :searchWord or LOWER(instructions) LIKE :searchWord order by name")
+    fun getRecipesByFilters(searchWord:String): LiveData<List<RecipeWithImages>>
 
     @Transaction
     @Query("SELECT * FROM recipes where uuid = :uuid")
