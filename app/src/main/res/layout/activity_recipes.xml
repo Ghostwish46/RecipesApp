@@ -7,6 +7,20 @@
     tools:context=".presentation.recipe.RecipesActivity">
 
     <include
+        layout="@layout/layout_nothing_found"
+        android:layout_width="0dp"
+        android:id="@+id/layoutNothing"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/refreshRecipes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
+    <include
         android:id="@+id/layoutLoading"
         layout="@layout/layout_loading"
         android:layout_width="wrap_content"
@@ -30,8 +44,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerRecipes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+         />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -39,13 +55,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         android:padding="@dimen/margin_normal"
-        android:background="@drawable/selector_out_line">
+        android:background="@drawable/container_rounded_background">
 
         <EditText
             android:id="@+id/editRecipesSearching"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/drawable_rounded_background"
+            android:background="@drawable/edit_text_rounded_background"
             android:ems="10"
             android:hint="@string/hint_searching"
             android:inputType="textPersonName"
@@ -57,28 +73,28 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
             android:background="@drawable/selector_out_line"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editRecipesSearching"
-            android:layout_marginTop="@dimen/margin_normal">
+            app:layout_constraintTop_toBottomOf="@+id/editRecipesSearching">
 
             <RadioButton
                 android:id="@+id/rbSortByName"
-                android:layout_width="150dp"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/toggle_widget_background"
                 android:button="@null"
+                android:checked="true"
                 android:padding="@dimen/margin_normal"
                 android:text="@string/action_sort_by_name"
-                android:textAlignment="center"
-                android:checked="true"/>
+                android:textAlignment="center" />
 
             <RadioButton
                 android:id="@+id/rbSortByLastUpdated"
-                android:layout_width="150dp"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/toggle_widget_background"
                 android:button="@null"

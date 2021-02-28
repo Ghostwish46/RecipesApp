@@ -7,4 +7,11 @@
     <style name="MyDarkTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:navigationBarColor">@color/black</item>
     </style>
+
+<!--    <style name="DifficultyRatingBar" parent="Widget.AppCompat.RatingBar">-->
+<!--        <item name="android:progressDrawable">@drawable/rating_bar_difficulty</item>-->
+<!--        <item name="android:minHeight">24dp</item>-->
+<!--        <item name="android:maxHeight">25dp</item>-->
+<!--    </style>-->
+
 </resources>

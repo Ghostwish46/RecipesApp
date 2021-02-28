@@ -22,7 +22,10 @@ class RecipeViewHolder(private val itemRecipeBinding: ItemRecipeBinding) :
     ) {
         with(itemRecipeBinding) {
             recipeName.text = recipeWithImages.recipe.name
-            recipeDescription.text = recipeWithImages.recipe.description
+            recipeDescription.text =
+                if (recipeWithImages.recipe.description.isBlank())
+                    root.context.getString(R.string.placeholder_description)
+                else recipeWithImages.recipe.description
 
             recipeCard.setOnClickListener {
                 onCardClickListener(recipeWithImages)

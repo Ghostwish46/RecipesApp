@@ -1,21 +1,23 @@
 <resources>
     <string name="app_name">RecipesApp</string>
 
-    <string name="header_similar_recipes">Похожие рецепты</string>
+    <string name="title_activity_recipe_images">RecipeImagesActivity</string>
 
-    <string name="hint_difficulty">Сложность: </string>
-    <string name="hint_instructions">Инструкции по приготовлению: </string>
+    <string name="header_similar_recipes">Similar recipes:</string>
+
+    <string name="hint_difficulty">Difficulty: </string>
+    <string name="hint_instructions">Instructions: </string>
     <string name="hint_searching">Input text for searching</string>
 
-    <string name="action_sort_by_name">By name</string>
-    <string name="action_sort_by_last_updated">By last updated</string>
+    <string name="placeholder_description">No description yet…</string>
 
+    <string name="action_sort_by_name">Sort by name</string>
+    <string name="action_sort_by_last_updated">Sort by last updated</string>
 
     <string name="error_occurred">An error occurred: </string>
-
     <string name="error_access_denied">Access denied.</string>
-
-    <string name="title_activity_recipe_images">RecipeImagesActivity</string>
+    <string name="error_no_recipes_found">We\'re sorry, but no recipes found. You can try to change your searching criteria.</string>
+    <string name="error_no_similar_recipes">No similar recipes found.</string>
 
     <string name="info_file_saved">Image saved into\n</string>
 </resources>

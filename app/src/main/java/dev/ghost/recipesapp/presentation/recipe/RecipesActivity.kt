@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.ghost.recipesapp.R
 import dev.ghost.recipesapp.databinding.ActivityRecipesBinding
+import dev.ghost.recipesapp.model.network.LoadingState
 import dev.ghost.recipesapp.model.network.Status
 import dev.ghost.recipesapp.presentation.recipe_details.RecipeDetailsActivity
 
@@ -86,13 +87,29 @@ class RecipesActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        recipesViewModel.results.observe(this, Observer {
-            if (recipesViewModel.getSortingData().value == "name")
-                recipesViewModel.recipesAdapter.submitList(it)
-            else
-                recipesViewModel.recipesAdapter.submitList(it.sortedByDescending { recipeData ->
-                    recipeData.recipe.lastUpdated
-                })
+        recipesViewModel.results.observe(this, Observer { recipesList ->
+            if (recipesList.isEmpty() && recipesViewModel.getLoadingState().value != LoadingState.LOADING)
+                hideRecipesData()
+            else if (recipesList.isNotEmpty()) {
+                if (recipesViewModel.getSortingData().value == "name")
+                    recipesViewModel.recipesAdapter.submitList(recipesList)
+                else
+                    recipesViewModel.recipesAdapter.submitList(recipesList.sortedByDescending { recipeData ->
+                        recipeData.recipe.lastUpdated
+                    })
+                showRecipesData()
+            }
+
         })
+    }
+
+    private fun showRecipesData() {
+        activityRecipesBinding.recyclerRecipes.isVisible = true
+        activityRecipesBinding.layoutNothing.mainContainer.isVisible = false
+    }
+
+    private fun hideRecipesData() {
+        activityRecipesBinding.recyclerRecipes.isVisible = false
+        activityRecipesBinding.layoutNothing.mainContainer.isVisible = true
     }
 }
