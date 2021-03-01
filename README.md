@@ -12,7 +12,7 @@ Based on mvvm architecture and repository pattern. <br/>
 ## Tech Stack
 * Minimum SDK 21
 * MVVM Architecture
-* DataBinding
+* ViewBinding
 * Written on kotlin language
 * Architecture Components (Lifecycle, LiveData, ViewModel, Room Persistence)
 * [API](https://test.kode-t.ru/recipes) with recipes data
